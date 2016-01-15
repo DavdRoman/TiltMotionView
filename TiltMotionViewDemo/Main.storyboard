@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wuc-TT-DVB">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="fAL-1u-CCd">
+            <objects>
+                <viewController id="wuc-TT-DVB" customClass="ViewController" customModule="TiltMotionViewDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V1p-b7-8cB"/>
+                        <viewControllerLayoutGuide type="bottom" id="LNO-Ni-72m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4W0-td-XNo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYv-VD-iva" customClass="TiltMotionView" customModule="TiltMotionView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LNO-Ni-72m" firstAttribute="top" secondItem="jYv-VD-iva" secondAttribute="bottom" id="035-dY-qPS"/>
+                            <constraint firstItem="jYv-VD-iva" firstAttribute="top" secondItem="V1p-b7-8cB" secondAttribute="bottom" id="ahp-C9-irt"/>
+                            <constraint firstAttribute="trailing" secondItem="jYv-VD-iva" secondAttribute="trailing" id="fGi-6v-N7W"/>
+                            <constraint firstItem="jYv-VD-iva" firstAttribute="leading" secondItem="4W0-td-XNo" secondAttribute="leading" id="wjn-F2-Tn5"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="tiltMotionView" destination="jYv-VD-iva" id="eYa-Vi-DNN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VBb-Df-Lud" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="545" y="410"/>
+        </scene>
+    </scenes>
+</document>
