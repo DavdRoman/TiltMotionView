@@ -1,4 +1,4 @@
-# OS X
+# macOS
 .DS_Store
 
 ## Build generated
@@ -30,6 +30,7 @@ xcuserdata
 Carthage
 
 # fastlane
+fastlane/README.md
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
