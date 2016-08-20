@@ -10,12 +10,11 @@ import UIKit
 import TiltMotionView
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var tiltMotionView: TiltMotionView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tiltMotionView.imageView.image = UIImage(named: "photo")
-    }
-}
 
+	@IBOutlet weak var tiltMotionView: TiltMotionView!
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		tiltMotionView.imageView.image = UIImage(named: "photo")
+	}
+}
