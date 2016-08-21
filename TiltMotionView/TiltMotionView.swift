@@ -11,13 +11,13 @@ import CoreMotion
 
 public class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 
-	public var motionEnabled = true {
+	public dynamic var motionEnabled = true {
 		didSet {
 			motionEnabledDidChange()
 		}
 	}
 
-	public let imageView = UIImageView()
+	public dynamic let imageView = UIImageView()
 
 	public init() {
 		super.init(frame: .zero)
