@@ -55,6 +55,10 @@ public class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 	private var previousFrame = CGRect.zero
 
 	private func resize(force force: Bool = false) {
+		if imageView.frame.size == .zero {
+			imageView.frame = frame
+		}
+
 		if let imageSize = imageView.image?.size where force || frame != previousFrame {
 			let ratio = max(frame.size.width/imageSize.width, frame.size.height/imageSize.height)
 			let newContentSize = CGSize(width: imageSize.width*ratio, height: imageSize.height*ratio)
