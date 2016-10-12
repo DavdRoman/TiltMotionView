@@ -9,7 +9,7 @@
 import UIKit
 import CoreMotion
 
-public class TiltMotionView: UIScrollView, UIScrollViewDelegate {
+public final class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 
 	public dynamic var motionEnabled = true {
 		didSet {
@@ -32,10 +32,10 @@ public class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 	private func initialize() {
 		showsHorizontalScrollIndicator = false
 		showsVerticalScrollIndicator = false
-		scrollEnabled = false
+		isScrollEnabled = false
 
-		imageView.contentMode = .ScaleAspectFill
-		imageView.addObserver(self, forKeyPath: "image", options: [.Initial, .New], context: nil)
+		imageView.contentMode = .scaleAspectFill
+		imageView.addObserver(self, forKeyPath: "image", options: [.initial, .new], context: nil)
 		addSubview(imageView)
 
 		motionEnabledDidChange() // MARK: workaround until didSet can get called during init (or at least for provided default values)
@@ -43,23 +43,23 @@ public class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 
 	// MARK: resizing
 
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 		resize()
 		super.layoutSubviews()
 	}
 
-	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		resize(force: true)
 	}
 
 	private var previousFrame = CGRect.zero
 
-	private func resize(force force: Bool = false) {
+	private func resize(force: Bool = false) {
 		if imageView.frame.size == .zero {
 			imageView.frame = frame
 		}
 
-		if let imageSize = imageView.image?.size where force || frame != previousFrame {
+		if let imageSize = imageView.image?.size, force || frame != previousFrame {
 			let ratio = max(frame.size.width/imageSize.width, frame.size.height/imageSize.height)
 			let newContentSize = CGSize(width: imageSize.width*ratio, height: imageSize.height*ratio)
 
@@ -74,8 +74,8 @@ public class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 	// MARK: Motion
 
 	private enum AspectRatio {
-		case Portrait
-		case Landscape
+		case portrait
+		case landscape
 	}
 
 	private static let RotationMinimumThreshold = CGFloat(0.25)
@@ -89,36 +89,36 @@ public class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 	}
 
 	private var aspectRatio: AspectRatio {
-		guard let imageSize = imageView.image?.size else { return .Portrait }
-		return imageSize.width/imageSize.height > frame.width/frame.height ? .Portrait : .Landscape
+		guard let imageSize = imageView.image?.size else { return .portrait }
+		return imageSize.width/imageSize.height > frame.width/frame.height ? .portrait : .landscape
 	}
 
 	private var maximumOffset: CGFloat {
 		switch aspectRatio {
-		case .Portrait:
+		case .portrait:
 			return contentSize.width - frame.width
-		case .Landscape:
+		case .landscape:
 			return contentSize.height - frame.height
 		}
 	}
 
 	private func startMonitoring() {
-		if !motionManager.gyroActive && motionManager.gyroAvailable {
-			motionManager.startGyroUpdatesToQueue(.mainQueue()) { [unowned self] gyroData, error in
-				if let gyroData = gyroData where error == nil {
+		if !motionManager.isGyroActive && motionManager.isGyroAvailable {
+			motionManager.startGyroUpdates(to: .main) { [unowned self] gyroData, error in
+				if let gyroData = gyroData, error == nil {
 					let rotationRate = self.rotationRateForCurrentOrientation(with: gyroData)
 
 					if (fabs(rotationRate) >= TiltMotionView.RotationMinimumThreshold) {
 						var newOffset = CGPoint()
 
 						switch self.aspectRatio {
-						case .Portrait:
-							newOffset = CGPointMake(max(min(self.contentOffset.x - rotationRate * TiltMotionView.RotationFactor, self.maximumOffset), 0), 0)
-						case .Landscape:
-							newOffset = CGPointMake(0, max(min(self.contentOffset.y - rotationRate * TiltMotionView.RotationFactor, self.maximumOffset), 0))
+						case .portrait:
+							newOffset = CGPoint(x: max(min(self.contentOffset.x - rotationRate * TiltMotionView.RotationFactor, self.maximumOffset), 0), y: 0)
+						case .landscape:
+							newOffset = CGPoint(x: 0, y: max(min(self.contentOffset.y - rotationRate * TiltMotionView.RotationFactor, self.maximumOffset), 0))
 						}
 
-						UIView.animateWithDuration(0.3, delay: 0, options: [.BeginFromCurrentState, .AllowUserInteraction, .CurveEaseOut], animations: {
+						UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveEaseOut], animations: {
 							self.contentOffset = newOffset
 						}, completion: nil)
 					}
@@ -130,11 +130,11 @@ public class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 	private func rotationRateForCurrentOrientation(with gyroData: CMGyroData) -> CGFloat {
 		var rotationRate = CGFloat()
 
-		switch (UIApplication.sharedApplication().statusBarOrientation) {
-		case .Portrait, .LandscapeLeft:
+		switch (UIApplication.shared.statusBarOrientation) {
+		case .portrait, .landscapeLeft:
 			rotationRate = CGFloat(gyroData.rotationRate.y)
 
-		case .PortraitUpsideDown, .LandscapeRight:
+		case .portraitUpsideDown, .landscapeRight:
 			rotationRate = CGFloat(-gyroData.rotationRate.y)
 
 		default:
