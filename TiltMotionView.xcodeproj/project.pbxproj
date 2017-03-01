@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D51475E61C3B242E007E54AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51475E51C3B242E007E54AF /* Main.storyboard */; };
 		D51475ED1C3B253E007E54AF /* TiltMotionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5397ABD1C3B1CB500329D54 /* TiltMotionView.framework */; };
 		D51475EE1C3B253E007E54AF /* TiltMotionView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5397ABD1C3B1CB500329D54 /* TiltMotionView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D5397AC11C3B1CB500329D54 /* TiltMotionView.h in Headers */ = {isa = PBXBuildFile; fileRef = D5397AC01C3B1CB500329D54 /* TiltMotionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -16,6 +15,18 @@
 		D5397AD61C3B1CE500329D54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5397AD51C3B1CE500329D54 /* Assets.xcassets */; };
 		D5397AD91C3B1CE500329D54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5397AD71C3B1CE500329D54 /* LaunchScreen.storyboard */; };
 		D5397ADF1C3B1F7A00329D54 /* TiltMotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5397ADE1C3B1F7A00329D54 /* TiltMotionView.swift */; };
+		D5AB8BC61E67138D00AEDBA4 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BC51E67138D00AEDBA4 /* Media.swift */; };
+		D5AB8BC81E67143500AEDBA4 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BC71E67143500AEDBA4 /* VideoPlayerView.swift */; };
+		D5AB8BCA1E671D4E00AEDBA4 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BC91E671D4E00AEDBA4 /* MediaView.swift */; };
+		D5AB8BCC1E671F5F00AEDBA4 /* UIView+Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BCB1E671F5F00AEDBA4 /* UIView+Sugar.swift */; };
+		D5AB8BCE1E67200500AEDBA4 /* UIImageView+Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BCD1E67200500AEDBA4 /* UIImageView+Sugar.swift */; };
+		D5AB8BD11E67244D00AEDBA4 /* UIView+Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BCB1E671F5F00AEDBA4 /* UIView+Sugar.swift */; };
+		D5AB8BD51E67254300AEDBA4 /* photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5AB8BD41E67254300AEDBA4 /* photo.jpg */; };
+		D5AB8BD71E672A5000AEDBA4 /* CGSize+Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BD61E672A5000AEDBA4 /* CGSize+Sugar.swift */; };
+		D5AB8BD91E672EDB00AEDBA4 /* UIScrollView+Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BD81E672EDB00AEDBA4 /* UIScrollView+Sugar.swift */; };
+		D5AB8BDB1E6735EF00AEDBA4 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D5AB8BDA1E6735EF00AEDBA4 /* video.mp4 */; };
+		D5AB8BDD1E6736E000AEDBA4 /* AVAsset+Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BDC1E6736E000AEDBA4 /* AVAsset+Sugar.swift */; };
+		D5AB8BDF1E67374A00AEDBA4 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BDE1E67374A00AEDBA4 /* VideoPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +54,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D51475E51C3B242E007E54AF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D5397ABD1C3B1CB500329D54 /* TiltMotionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TiltMotionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5397AC01C3B1CB500329D54 /* TiltMotionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TiltMotionView.h; sourceTree = "<group>"; };
 		D5397AC21C3B1CB500329D54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +64,17 @@
 		D5397AD81C3B1CE500329D54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5397ADA1C3B1CE500329D54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5397ADE1C3B1F7A00329D54 /* TiltMotionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiltMotionView.swift; sourceTree = "<group>"; };
+		D5AB8BC51E67138D00AEDBA4 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		D5AB8BC71E67143500AEDBA4 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		D5AB8BC91E671D4E00AEDBA4 /* MediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
+		D5AB8BCB1E671F5F00AEDBA4 /* UIView+Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Sugar.swift"; sourceTree = "<group>"; };
+		D5AB8BCD1E67200500AEDBA4 /* UIImageView+Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Sugar.swift"; sourceTree = "<group>"; };
+		D5AB8BD41E67254300AEDBA4 /* photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo.jpg; sourceTree = "<group>"; };
+		D5AB8BD61E672A5000AEDBA4 /* CGSize+Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Sugar.swift"; sourceTree = "<group>"; };
+		D5AB8BD81E672EDB00AEDBA4 /* UIScrollView+Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Sugar.swift"; sourceTree = "<group>"; };
+		D5AB8BDA1E6735EF00AEDBA4 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
+		D5AB8BDC1E6736E000AEDBA4 /* AVAsset+Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVAsset+Sugar.swift"; sourceTree = "<group>"; };
+		D5AB8BDE1E67374A00AEDBA4 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +119,15 @@
 			children = (
 				D5397AC01C3B1CB500329D54 /* TiltMotionView.h */,
 				D5397ADE1C3B1F7A00329D54 /* TiltMotionView.swift */,
+				D5AB8BC51E67138D00AEDBA4 /* Media.swift */,
+				D5AB8BC91E671D4E00AEDBA4 /* MediaView.swift */,
+				D5AB8BC71E67143500AEDBA4 /* VideoPlayerView.swift */,
+				D5AB8BDE1E67374A00AEDBA4 /* VideoPlayer.swift */,
+				D5AB8BDC1E6736E000AEDBA4 /* AVAsset+Sugar.swift */,
+				D5AB8BCB1E671F5F00AEDBA4 /* UIView+Sugar.swift */,
+				D5AB8BD61E672A5000AEDBA4 /* CGSize+Sugar.swift */,
+				D5AB8BD81E672EDB00AEDBA4 /* UIScrollView+Sugar.swift */,
+				D5AB8BCD1E67200500AEDBA4 /* UIImageView+Sugar.swift */,
 				D5397AC21C3B1CB500329D54 /* Info.plist */,
 			);
 			path = TiltMotionView;
@@ -108,7 +138,8 @@
 			children = (
 				D5397ACE1C3B1CE500329D54 /* AppDelegate.swift */,
 				D5397AD01C3B1CE500329D54 /* ViewController.swift */,
-				D51475E51C3B242E007E54AF /* Main.storyboard */,
+				D5AB8BD41E67254300AEDBA4 /* photo.jpg */,
+				D5AB8BDA1E6735EF00AEDBA4 /* video.mp4 */,
 				D5397AD51C3B1CE500329D54 /* Assets.xcassets */,
 				D5397AD71C3B1CE500329D54 /* LaunchScreen.storyboard */,
 				D5397ADA1C3B1CE500329D54 /* Info.plist */,
@@ -184,6 +215,7 @@
 					};
 					D5397ACB1C3B1CE500329D54 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 26CPNYHDUU;
 					};
 				};
 			};
@@ -218,9 +250,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D51475E61C3B242E007E54AF /* Main.storyboard in Resources */,
 				D5397AD91C3B1CE500329D54 /* LaunchScreen.storyboard in Resources */,
 				D5397AD61C3B1CE500329D54 /* Assets.xcassets in Resources */,
+				D5AB8BD51E67254300AEDBA4 /* photo.jpg in Resources */,
+				D5AB8BDB1E6735EF00AEDBA4 /* video.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +281,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5AB8BD91E672EDB00AEDBA4 /* UIScrollView+Sugar.swift in Sources */,
+				D5AB8BDD1E6736E000AEDBA4 /* AVAsset+Sugar.swift in Sources */,
+				D5AB8BD71E672A5000AEDBA4 /* CGSize+Sugar.swift in Sources */,
+				D5AB8BC61E67138D00AEDBA4 /* Media.swift in Sources */,
+				D5AB8BCA1E671D4E00AEDBA4 /* MediaView.swift in Sources */,
+				D5AB8BCC1E671F5F00AEDBA4 /* UIView+Sugar.swift in Sources */,
+				D5AB8BDF1E67374A00AEDBA4 /* VideoPlayer.swift in Sources */,
 				D5397ADF1C3B1F7A00329D54 /* TiltMotionView.swift in Sources */,
+				D5AB8BC81E67143500AEDBA4 /* VideoPlayerView.swift in Sources */,
+				D5AB8BCE1E67200500AEDBA4 /* UIImageView+Sugar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +300,7 @@
 			files = (
 				D5397AD11C3B1CE500329D54 /* ViewController.swift in Sources */,
 				D5397ACF1C3B1CE500329D54 /* AppDelegate.swift in Sources */,
+				D5AB8BD11E67244D00AEDBA4 /* UIView+Sugar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +467,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 26CPNYHDUU;
 				INFOPLIST_FILE = TiltMotionViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.davidroman.TiltMotionViewDemo;
@@ -438,6 +482,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 26CPNYHDUU;
 				INFOPLIST_FILE = TiltMotionViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.davidroman.TiltMotionViewDemo;
