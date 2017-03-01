@@ -12,11 +12,11 @@ import TiltMotionView
 final class ViewController: UIViewController {
 
 	private enum Constants {
-		static let photoUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "photo", ofType: "jpg")!)
+		static let photo = UIImage(named: "photo.jpg")!
 		static let videoUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "video", ofType: "mp4")!)
 	}
 
-	let tiltMotionView = TiltMotionView(media: .photo(Constants.photoUrl))
+	let tiltMotionView = TiltMotionView(media: .photo(Constants.photo))
 
 	override func viewDidLoad() {
 		view.addSubview(tiltMotionView)
@@ -37,7 +37,7 @@ final class ViewController: UIViewController {
 			case .photo:
 				tiltMotionView.media = .video(Constants.videoUrl)
 			case .video:
-				tiltMotionView.media = .photo(Constants.photoUrl)
+				tiltMotionView.media = .photo(Constants.photo)
 			}
 		}
 	}

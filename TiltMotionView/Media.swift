@@ -6,9 +6,9 @@
 //  Copyright © 2017 David Román Aguirre. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public enum Media {
-	case photo(URL)
+	case photo(UIImage)
 	case video(URL)
 }

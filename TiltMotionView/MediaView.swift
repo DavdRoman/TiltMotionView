@@ -36,26 +36,16 @@ final class MediaView: UIView {
 
 		if let media = media {
 			switch media {
-			case .photo(let url):
+			case .photo(let image):
 				videoPlayer = nil
-				setUpImageView(withUrl: url)
+				setUpImageView(with: image)
 			case .video(let url):
 				setUpVideoView(with: url)
 			}
 		}
 	}
 
-	func setUpImageView(withUrl url: URL) {
-		do {
-			guard let image = try UIImage(data: Data(contentsOf: url)) else {
-				return
-			}
-
-			setUpImageView(withImage: image)
-		} catch { }
-	}
-
-	func setUpImageView(withImage image: UIImage) {
+	func setUpImageView(with image: UIImage) {
 		addSubview(imageView)
 
 		imageView.image = image
@@ -67,7 +57,7 @@ final class MediaView: UIView {
 		videoPlayer = VideoPlayer(url: url)
 
 		if let thumbnail = videoPlayer?.currentItem?.asset.thumbnail {
-			setUpImageView(withImage: thumbnail)
+			setUpImageView(with: thumbnail)
 		}
 
 		addSubview(videoView)
