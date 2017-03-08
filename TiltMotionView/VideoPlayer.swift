@@ -39,7 +39,7 @@ public final class VideoPlayer: AVPlayer {
 
 			// TODO: improve (use NSDateComponentsFormatter?)
 			let seconds = Int(floor(time.seconds).truncatingRemainder(dividingBy: 60))
-			let minutes = Int(seconds / 60)
+			let minutes = Int(floor(time.seconds) / 60)
 
 			let secondsString = seconds < 10 ? "0\(seconds)" : "\(seconds)"
 			let minutesString = minutes < 10 ? "0\(minutes)" : "\(minutes)"
