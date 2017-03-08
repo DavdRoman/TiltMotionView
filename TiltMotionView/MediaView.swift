@@ -19,7 +19,11 @@ final class MediaView: UIView {
 
 	dynamic var videoPlayer: VideoPlayer? {
 		get { return videoView.playerLayer.player as? VideoPlayer }
-		set { videoView.playerLayer.player = newValue }
+		set {
+			willChangeValue(forKey: #keyPath(videoPlayer))
+			videoView.playerLayer.player = newValue
+			didChangeValue(forKey: #keyPath(videoPlayer))
+		}
 	}
 
 	init(media: Media? = nil) {
