@@ -12,9 +12,7 @@ import CoreMotion
 
 public final class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 
-	public dynamic var motionEnabled = true {
-		didSet { motionEnabledDidChange() }
-	}
+	public dynamic var isMotionEnabled = true
 
 	let mediaView: MediaView
 
@@ -38,7 +36,7 @@ public final class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 		isScrollEnabled = false
 
 		reconstraintMediaView()
-		motionEnabledDidChange() // MARK: workaround until didSet can get called during init (or at least for provided default values)
+		startMonitoring()
 	}
 
 	func reconstraintMediaView() {
@@ -83,11 +81,7 @@ public final class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 		static let rotationFactor: CGFloat = 15
 	}
 
-	private let motionManager = CMMotionManager()
-
-	private func motionEnabledDidChange() {
-		(motionEnabled ? startMonitoring : motionManager.stopGyroUpdates)()
-	}
+	private static let motionManager = CMMotionManager()
 
 	private var aspectRatio: AspectRatio {
 		guard let ratio = mediaView.size?.ratio else {
@@ -107,25 +101,32 @@ public final class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 	}
 
 	private func startMonitoring() {
-		if !motionManager.isGyroActive && motionManager.isGyroAvailable {
-			motionManager.startGyroUpdates(to: .main) { [unowned self] gyroData, error in
-				if let gyroData = gyroData, error == nil {
-					let rotationRate = self.rotationRateForCurrentOrientation(with: gyroData)
+		if !TiltMotionView.motionManager.isGyroActive && TiltMotionView.motionManager.isGyroAvailable {
+			TiltMotionView.motionManager.startGyroUpdates(to: .main) { [weak self] gyroData, error in
+				guard
+					let `self` = self,
+					self.isMotionEnabled,
+					let gyroData = gyroData,
+					error == nil
+				else {
+					return
+				}
 
-					if (fabs(rotationRate) >= Constants.rotationMinimumThreshold) {
-						var newOffset = CGPoint()
+				let rotationRate = self.rotationRateForCurrentOrientation(with: gyroData)
 
-						switch self.aspectRatio {
-						case .portrait:
-							newOffset = CGPoint(x: max(min(self.contentOffset.x - rotationRate * Constants.rotationFactor, self.maximumOffset), 0), y: 0)
-						case .landscape:
-							newOffset = CGPoint(x: 0, y: max(min(self.contentOffset.y - rotationRate * Constants.rotationFactor, self.maximumOffset), 0))
-						}
+				if (fabs(rotationRate) >= Constants.rotationMinimumThreshold) {
+					var newOffset = CGPoint()
 
-						UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveEaseOut], animations: {
-							self.contentOffset = newOffset
-						}, completion: nil)
+					switch self.aspectRatio {
+					case .portrait:
+						newOffset = CGPoint(x: max(min(self.contentOffset.x - rotationRate * Constants.rotationFactor, self.maximumOffset), 0), y: 0)
+					case .landscape:
+						newOffset = CGPoint(x: 0, y: max(min(self.contentOffset.y - rotationRate * Constants.rotationFactor, self.maximumOffset), 0))
 					}
+
+					UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveEaseOut], animations: {
+						self.contentOffset = newOffset
+					}, completion: nil)
 				}
 			}
 		}
