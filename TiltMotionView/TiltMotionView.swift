@@ -106,6 +106,7 @@ public final class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 				guard
 					let `self` = self,
 					self.isMotionEnabled,
+					self.mediaView.media != nil,
 					let gyroData = gyroData,
 					error == nil
 				else {
