@@ -8,11 +8,18 @@
 
 import UIKit
 import AVFoundation
-import CoreMotion
 
 public final class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 
 	public dynamic var isMotionEnabled = true
+	public dynamic static var isMotionEnabled: Bool {
+		get {
+			return Gyro.shared.isEnabled
+		}
+		set {
+			Gyro.shared.isEnabled = newValue
+		}
+	}
 
 	let mediaView: MediaView
 
@@ -76,12 +83,8 @@ public final class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 	}
 
 	private enum Constants {
-		static let rotationMinimumThreshold: CGFloat = 0.25
-		static let gyroUpdateInterval: CGFloat = 0.002
 		static let rotationFactor: CGFloat = 15
 	}
-
-	private static let motionManager = CMMotionManager()
 
 	private var aspectRatio: AspectRatio {
 		guard let ratio = mediaView.size?.ratio else {
@@ -101,53 +104,28 @@ public final class TiltMotionView: UIScrollView, UIScrollViewDelegate {
 	}
 
 	private func startMonitoring() {
-		if !TiltMotionView.motionManager.isGyroActive && TiltMotionView.motionManager.isGyroAvailable {
-			TiltMotionView.motionManager.startGyroUpdates(to: .main) { [weak self] gyroData, error in
-				guard
-					let `self` = self,
-					self.isMotionEnabled,
-					self.mediaView.media != nil,
-					let gyroData = gyroData,
-					error == nil
-				else {
-					return
-				}
-
-				let rotationRate = self.rotationRateForCurrentOrientation(with: gyroData)
-
-				if (fabs(rotationRate) >= Constants.rotationMinimumThreshold) {
-					var newOffset = CGPoint()
-
-					switch self.aspectRatio {
-					case .portrait:
-						newOffset = CGPoint(x: max(min(self.contentOffset.x - rotationRate * Constants.rotationFactor, self.maximumOffset), 0), y: 0)
-					case .landscape:
-						newOffset = CGPoint(x: 0, y: max(min(self.contentOffset.y - rotationRate * Constants.rotationFactor, self.maximumOffset), 0))
-					}
-
-					UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveEaseOut], animations: {
-						self.contentOffset = newOffset
-					}, completion: nil)
-				}
+		Gyro.shared.didUpdateClosure = { [weak self] rate in
+			guard
+				let `self` = self,
+				self.isMotionEnabled,
+				self.media != nil
+			else {
+				return
 			}
+
+			let newOffset: CGPoint
+
+			switch self.aspectRatio {
+			case .portrait:
+				newOffset = CGPoint(x: max(min(self.contentOffset.x - rate * Constants.rotationFactor, self.maximumOffset), 0), y: 0)
+			case .landscape:
+				newOffset = CGPoint(x: 0, y: max(min(self.contentOffset.y - rate * Constants.rotationFactor, self.maximumOffset), 0))
+			}
+
+			UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveEaseOut], animations: {
+				self.contentOffset = newOffset
+			}, completion: nil)
 		}
-	}
-
-	private func rotationRateForCurrentOrientation(with gyroData: CMGyroData) -> CGFloat {
-		var rotationRate = CGFloat()
-
-		switch UIApplication.shared.statusBarOrientation {
-		case .portrait, .landscapeLeft:
-			rotationRate = CGFloat(gyroData.rotationRate.y)
-
-		case .portraitUpsideDown, .landscapeRight:
-			rotationRate = CGFloat(-gyroData.rotationRate.y)
-
-		default:
-			break
-		}
-
-		return rotationRate
 	}
 
 	@available(*, unavailable) required public init?(coder aDecoder: NSCoder) { fatalError() }

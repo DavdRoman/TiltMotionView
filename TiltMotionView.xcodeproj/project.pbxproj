@@ -27,6 +27,7 @@
 		D5AB8BDB1E6735EF00AEDBA4 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D5AB8BDA1E6735EF00AEDBA4 /* video.mp4 */; };
 		D5AB8BDD1E6736E000AEDBA4 /* AVAsset+Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BDC1E6736E000AEDBA4 /* AVAsset+Sugar.swift */; };
 		D5AB8BDF1E67374A00AEDBA4 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB8BDE1E67374A00AEDBA4 /* VideoPlayer.swift */; };
+		D5CC41A51EB281E50068B57C /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CC41A41EB281E50068B57C /* Gyro.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		D5AB8BDA1E6735EF00AEDBA4 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		D5AB8BDC1E6736E000AEDBA4 /* AVAsset+Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVAsset+Sugar.swift"; sourceTree = "<group>"; };
 		D5AB8BDE1E67374A00AEDBA4 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		D5CC41A41EB281E50068B57C /* Gyro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			children = (
 				D5397AC01C3B1CB500329D54 /* TiltMotionView.h */,
 				D5397ADE1C3B1F7A00329D54 /* TiltMotionView.swift */,
+				D5CC41A41EB281E50068B57C /* Gyro.swift */,
 				D5AB8BC51E67138D00AEDBA4 /* Media.swift */,
 				D5AB8BC91E671D4E00AEDBA4 /* MediaView.swift */,
 				D5AB8BC71E67143500AEDBA4 /* VideoPlayerView.swift */,
@@ -287,6 +290,7 @@
 				D5AB8BC61E67138D00AEDBA4 /* Media.swift in Sources */,
 				D5AB8BCA1E671D4E00AEDBA4 /* MediaView.swift in Sources */,
 				D5AB8BCC1E671F5F00AEDBA4 /* UIView+Sugar.swift in Sources */,
+				D5CC41A51EB281E50068B57C /* Gyro.swift in Sources */,
 				D5AB8BDF1E67374A00AEDBA4 /* VideoPlayer.swift in Sources */,
 				D5397ADF1C3B1F7A00329D54 /* TiltMotionView.swift in Sources */,
 				D5AB8BC81E67143500AEDBA4 /* VideoPlayerView.swift in Sources */,
