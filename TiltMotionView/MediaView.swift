@@ -46,6 +46,8 @@ final class MediaView: UIView {
 			case .video(let url):
 				setUpVideoView(with: url)
 			}
+		} else {
+			imageView.image = nil
 		}
 	}
 
